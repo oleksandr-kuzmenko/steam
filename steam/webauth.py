@@ -67,8 +67,8 @@ from steam.core.crypto import rsa_publickey, pkcs1v15_encrypt
 
 
 API_HEADERS = {
-    'origin': 'https://steamcommunity.com',
-    'referer': 'https://steamcommunity.com/',
+    'origin': 'https://partner.steampowered.com',
+    'referer': 'https://partner.steampowered.com/',
     'accept': 'application/json, text/plain, */*'
 }
 
@@ -203,7 +203,7 @@ class WebAuth:
              # but with SteamClient, JWT audience contains client and web
              'platform_type': EAuthTokenPlatformType.SteamClient,
              'persistence': ESessionPersistence.Persistent,
-             'website_id': 'Community',
+             'website_id': 'SteamStats',
              },
             'IAuthentication',
             'BeginAuthSessionViaCredentials',
@@ -249,7 +249,7 @@ class WebAuth:
         self.sessionID = generate_session_id()
         self.logged_on = True
         for domain in ['store.steampowered.com', 'help.steampowered.com',
-                       'steamcommunity.com']:
+                       'steamcommunity.com', 'partner.steampowered.com']:
             self.session.cookies.set('sessionid', self.sessionID, domain=domain)
             self.session.cookies.set('steamLoginSecure',
                                      str(self.steam_id.as_64) + "||" + str(
